@@ -1,0 +1,34 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Movie, MoviesResponse } from '../interfaces/movies.interfaces';
+import { Observable, catchError, map } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MoviesService {
+
+  // Substitua por sua chave de API aqui!
+  private readonly apiKey = `SUA_CHAVE_DE_API`;
+  private readonly baseUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${this.apiKey}`;
+
+  constructor(private http: HttpClient) { }
+
+  getTopMovies(): Observable<Movie[]> {
+    return this.http.get<MoviesResponse>(`${ this.baseUrl }&language=pt-BR&region=BR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=1000`)
+      .pipe(
+        map((response: MoviesResponse): Movie[] => response.results),
+        map((movies: Movie[]): Movie[] => movies.map((movie: Movie) => {
+          return {
+            ...movie,
+            posterUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+            backdropUrl: `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`
+          }
+        })),
+        catchError(error => {
+          console.error('Erro ao buscar os filmes:', error);
+          return [];
+        })
+      );
+  }
+}
