@@ -1,27 +1,51 @@
-# AngularMovies
+<h1 style="color: #333" align="center">Movies</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
+<p align="center">
+  <a href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-backlog">Backlog</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-auhtors">Auhtors</a>
+</p>
 
-## Development server
+<br/>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<p align="center">
+  <img alt="Happy" src="images/the-movies-db.svg" width="280px">
+</p>
 
-## Code scaffolding
+<br/>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 📋 Project
 
-## Build
+A software that consumes data from <a href="https://developer.themoviedb.org/docs">The movies DB</a> public API and displays movie information to the user. In addition, the user can like or dislike movies and see the movies most liked by the community.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 💭 User stories
 
-## Running unit tests
+- [ ] As a user, I want to see the top 10 movies from Brazil
+- [ ] As a user, I want to like and dislike movies
+- [ ] As a user, I want to see the top 10 most liked movies
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🖥️ Technologies
 
-## Running end-to-end tests
+The project was developed using the following technologies:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- <a href="https://nodejs.org/en/">Node.js</a>
+- <a href="https://angular.io/">Angular</a>
+- <a href="https://www.typescriptlang.org/">TypeScript</a>
+- <a href="https://jwt.io/">JWT - JSON Web Tokens</a>
+- <a href="https://sass-lang.com/">SASS</a>
+- <a href="https://jestjs.io/pt-BR/">Jest</a>
+- <a href="https://www.mongodb.com/try/download/compass">Mongo Compass Free</a>
+- <a href="https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow">GitFlow</a>
+- <a href="https://pages.github.com/">Github Pages</a>
 
-## Further help
+## 🎨 Layout
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+All prototypes were tested using <a href="http://figma.com/">Figma</a>.
+
+- <a href="#">Responsive Layout Prototype</a>
+
+## ☕ Authors
+
+- <a href="https://www.linkedin.com/in/lucaslessa7/">Lucas Lessa</a>
