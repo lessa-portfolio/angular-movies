@@ -9,7 +9,7 @@ import { Observable, catchError, map } from 'rxjs';
 export class MoviesService {
 
   // Substitua por sua chave de API aqui!
-  private readonly apiKey = `SUA_CHAVE_DE_API`;
+  private readonly apiKey = `b4016224ea90dc523669a794dc2764e4`;
   private readonly baseUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${this.apiKey}`;
 
   constructor(private http: HttpClient) { }
@@ -21,8 +21,7 @@ export class MoviesService {
         map((movies: Movie[]): Movie[] => movies.map((movie: Movie) => {
           return {
             ...movie,
-            posterUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-            backdropUrl: `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`
+            posterUrl: `https://image.tmdb.org/t/p/w185${movie.poster_path}`,
           }
         })),
         catchError(error => {
