@@ -19,8 +19,6 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.email !== '' && this.password !== '') {
-      console.log('entrou no if');
-
       this.authService.login(this.email, this.password)
         .subscribe({
           next: (response) => {
@@ -29,10 +27,8 @@ export class LoginComponent {
             sessionStorage.setItem('token', token);
             this.router.navigate(['/top-movies']);
           },
-          error: (error) => {
-            console.error('Erro na requisição POST:', error);
-          }
-        })
+          error: (error) => console.error('Erro na requisição POST:', error),
+        });
     } else {
       this.isEmpty = true;
       setTimeout(() => this.isEmpty = false, 2000);

@@ -5,6 +5,9 @@
     <h3>{{ movie.title }}</h3>
     <p>{{ movie.release_date }}</p>
     <p>{{ movie.overview }}</p>
-    <button>like</button>
+    <button
+      (click)="sendRequest(movie.id)"
+      [innerText]="likedMovies.includes(movie.id) ? 'Liked' : 'Like'"
+    >like</button>
   </li>
 </ul>

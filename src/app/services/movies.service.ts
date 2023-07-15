@@ -9,7 +9,7 @@ import { Observable, catchError, map } from 'rxjs';
 export class MoviesService {
 
   // Substitua por sua chave de API aqui!
-  private readonly apiKey = `YOUR_KEY`;
+  private readonly apiKey = `b4016224ea90dc523669a794dc2764e4`;
   private readonly baseUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${this.apiKey}`;
 
   constructor(private http: HttpClient) { }
