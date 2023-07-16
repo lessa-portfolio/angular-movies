@@ -5,6 +5,9 @@
     <h3>{{ movie.title }}</h3>
     <p>{{ movie.release_date }}</p>
     <p>{{ movie.overview }}</p>
-    <button>like</button>
+
+    <button (click)="toggleLike(movie.id)">
+      {{ movie.liked ? 'Liked' : 'Like' }}
+    </button>
   </li>
 </ul>
