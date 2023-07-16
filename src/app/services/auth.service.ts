@@ -11,6 +11,6 @@ export class AuthService {
 
   login(email: string, password: string): Observable<any> {
     const body = { email, password };
-    return this.http.post('http://localhost:3000/auth/login', body);
+    return this.http.post('http://146.190.145.3/auth/login', body);
   }
 }
