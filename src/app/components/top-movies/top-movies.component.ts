@@ -1,7 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { switchMap } from 'rxjs';
 import { Movie } from 'src/app/interfaces/movies.interfaces';
+import { LikeService } from 'src/app/services/like.service';
 import { MoviesService } from 'src/app/services/movies.service';
 
 @Component({
@@ -11,57 +12,62 @@ import { MoviesService } from 'src/app/services/movies.service';
 })
 export class TopMoviesComponent {
   topMovies: Movie[] = [];
-  likedMovies: string[] = [];
 
   constructor(
     private moviesService: MoviesService,
-    private http: HttpClient,
+    private likeService: LikeService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.moviesService.getTopMovies().subscribe({
-      next: movies => this.topMovies = movies.slice(0, 10),
-      error: error => console.error(error)
-    });
+    this.loadMovies();
   }
 
-  public sendRequest(movieId: string): void {
-    const token = sessionStorage.getItem('token');
+  private loadMovies() {
+    const token = sessionStorage.getItem('token') || '';
 
     if (!token) {
       this.router.navigate(['/login']);
       return;
     }
 
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    this.moviesService.getTopMovies().pipe(
+      switchMap(movies => {
+        this.topMovies = movies;
+        return this.likeService.getLikedMovies(token);
+      })
+    ).subscribe({
+      next: likedMovies => {
+        this.topMovies.forEach(movie => {
+          movie.liked = likedMovies.includes(movie.id.toString());
+        });
+      },
+      error: (error) => this.redirectToLogin(error),
+    });
+  }
 
-    if(!this.likedMovies.includes(movieId)) {
-      this.http.post('http://localhost:3000/likes', { movieId }, { headers }).subscribe({
-        next: () => {
-          this.likedMovies.push(movieId),
-          console.log(`adicionei ${ movieId } no array ${ this.likedMovies }`);
-        },
-        error: (error) => {
-          console.error('Erro na requisição POST:', error);
-          if(error.message == 'Token expired' || 'Invalid token') {
-            this.router.navigate(['/login']);
-          }
-        }
+  toggleLike(movieId: string): void {
+    const token = sessionStorage.getItem('token') || '';
+
+    const movie = this.topMovies.find(movie => movie.id === movieId);
+
+    if(!movie?.liked) {
+      // Movie is not liked yet, let's enjoy
+      this.likeService.likeMovie(movieId, token).subscribe({
+        next: () => this.loadMovies(),
+        error: (error) => this.redirectToLogin(error),
       });
     } else {
-      this.http.post('http://localhost:3000/dislikes', { movieId }, { headers }).subscribe({
-        next: () => {
-          this.likedMovies.filter(item => item !== movieId);
-          console.log(`removi ${ movieId } no array ${ this.likedMovies }`);
-        },
-        error: (error) => {
-          console.error('Erro na requisição POST:', error);
-          if(error.message == 'Token expired' || 'Invalid token') {
-            this.router.navigate(['/login']);
-          }
-        }
+      // Movie is already liked, so let's dislike
+      this.likeService.dislikeMovie(movieId, token).subscribe({
+        next: () => this.loadMovies(),
+        error: (error) => this.redirectToLogin(error),
       });
     }
+  }
+
+  private redirectToLogin(error: any): void {
+    console.error('Erro na requisição POST:', error);
+    this.router.navigate(['/login']);
   }
 }

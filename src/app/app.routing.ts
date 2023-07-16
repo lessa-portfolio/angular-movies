@@ -12,7 +12,7 @@ export const routes: Routes = [
     loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)
   },{
     path: '',
-    redirectTo: '/top-movies',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
 ];
