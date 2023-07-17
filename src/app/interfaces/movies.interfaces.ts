@@ -21,6 +21,7 @@ export interface Movie {
   vote_average?:      number;
   vote_count?:        number;
   liked?:             boolean;
+  userCount?:         number;
 
   posterUrl?: string;
   backdropUrl?: string;

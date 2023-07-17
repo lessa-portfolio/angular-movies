@@ -30,4 +30,8 @@ export class MoviesService {
         })
       );
   }
+
+  getMoreLikedMovies():Observable<any[]> {
+    return this.http.get<any>('https://lessa-portfolio.com.br/movies');
+  }
 }

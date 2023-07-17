@@ -1,0 +1,19 @@
+nav {
+  height: 56px;
+  border-bottom: solid 1px #1c2a24;
+  width: 100%;
+  padding: 0 24px;
+  margin-bottom: 32px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    list-style: none;
+  }
+}
