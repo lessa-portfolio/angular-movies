@@ -11,16 +11,16 @@ export class LikeService {
 
   likeMovie(movieId: string, token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post('http://146.190.145.3/likes/like', { movieId }, { headers });
+    return this.http.post('https://lessa-portfolio.com.br/likes/like', { movieId }, { headers });
   }
 
   dislikeMovie(movieId: string, token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post('http://146.190.145.3/likes/dislike', { movieId }, { headers });
+    return this.http.post('https://lessa-portfolio.com.br/likes/dislike', { movieId }, { headers });
   }
 
   getLikedMovies(token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get('http://146.190.145.3/likes', { headers });
+    return this.http.get('https://lessa-portfolio.com.br/likes', { headers });
   }
 }

@@ -1,5 +1,10 @@
 <form (submit)="onSubmit()" class="form-container">
-  <h3>Login</h3>
+  <h3>Register</h3>
+
+  <div class="input-container">
+    <label for="name">name</label>
+    <input type="name" placeholder="Type your e-mail" name="name" id="name" [(ngModel)]="name" required>
+  </div>
 
   <div class="input-container">
     <label for="email">E-mail</label>
@@ -11,7 +16,6 @@
     <input type="password" placeholder="Type your password" name="password" id="password" [(ngModel)]="password" required>
   </div>
 
-  <button type="submit">Log In</button>
-
-  <a routerLink="/register" routerLinkActive="active">Register</a>
+  <button type="submit">Register</button>
+  <a routerLink="/login" routerLinkActive="active">Login</a>
 </form>

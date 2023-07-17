@@ -11,6 +11,11 @@ export class AuthService {
 
   login(email: string, password: string): Observable<any> {
     const body = { email, password };
-    return this.http.post('http://146.190.145.3/auth/login', body);
+    return this.http.post('https://lessa-portfolio.com.br/auth/login', body);
+  }
+
+  register(name: string, email: string, password: string): Observable<any> {
+    const body = { name, email, password };
+    return this.http.post('https://lessa-portfolio.com.br/users', body);
   }
 }
