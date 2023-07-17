@@ -1,13 +1,18 @@
-<h2>Top 10 Filmes do Brasil</h2>
+<h2>Top 10 Movies in Brazil</h2>
 <ul>
   <li *ngFor="let movie of topMovies">
     <img [src]="movie.posterUrl" alt="Pôster">
-    <h3>{{ movie.title }}</h3>
-    <p>{{ movie.release_date }}</p>
+    <div class="content">
+      <div class="title">
+        <h3>{{ movie.title }}</h3>
+        <p>{{ movie.release_date }}</p>
+      </div>
+      <div (click)="toggleLike(movie.id)">
+        <img [src]="movie.liked ? 'assets/heart-filled.svg' : 'assets/heart.svg'" alt="Heart Icon">
+      </div>
+
+    </div>
     <p>{{ movie.overview }}</p>
 
-    <button (click)="toggleLike(movie.id)">
-      {{ movie.liked ? 'Liked' : 'Like' }}
-    </button>
   </li>
 </ul>

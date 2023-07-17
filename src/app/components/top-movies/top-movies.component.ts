@@ -33,7 +33,7 @@ export class TopMoviesComponent {
 
     this.moviesService.getTopMovies().pipe(
       switchMap(movies => {
-        this.topMovies = movies;
+        this.topMovies = movies.slice(0, 10);;
         return this.likeService.getLikedMovies(token);
       })
     ).subscribe({
